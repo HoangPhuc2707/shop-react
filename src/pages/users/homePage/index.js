@@ -6,7 +6,10 @@ import cat2Img from "assets/users/images/categories/cat-2.jpg";
 import cat3Img from "assets/users/images/categories/cat-3.jpg";
 import cat4Img from "assets/users/images/categories/cat-4.jpg";
 import cat5Img from "assets/users/images/categories/cat-5.webp";
+import feature1Img from "assets/users/images/featured/featured-1.jpg";
+import feature2Img from "assets/users/images/featured/featured-2.jpg";
 import "./style.scss";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 
 const HomePage = () => {
     const responsive = {
@@ -51,6 +54,67 @@ const HomePage = () => {
         },
     ];
 
+    const renderFeaturedProducts = (data) => {
+        const tabList = [];
+        const tabPanels = [];
+        
+        Object.keys(data).forEach((key, index) => {
+            tabList.push(<Tab key={index}>{data[key].title}</Tab>);
+
+            const tabPanel = [];
+            data[key].products.forEach((item, j) => {
+                tabPanel.push(<div key={j}>{item.name}</div>);
+            });
+            tabPanels.push(tabPanel);
+        });
+
+        
+
+        return (
+            <Tabs>
+                <TabList>{tabList}</TabList>
+
+                {tabPanels.map((item, key) => (
+                    <TabPanel key={key}>
+                    <div className="row">
+                    {item}    
+                    </div>
+                </TabPanel>
+                ))}
+
+
+            </Tabs>
+        );
+    };
+
+    const featProducts = {
+        all: {
+            title: "Toàn bộ",
+            products: [
+                {
+                    img: feature1Img,
+                    name: "Mít sấy",
+                    price: 31000,
+                },
+                {
+                    img: feature2Img,
+                    name: "Khoai lang sấy",
+                    price: 25000,
+                },
+            ],
+        },
+        freshMeat: {
+            title: "Thịt tươi",
+            products: [
+                {
+                    img: feature2Img,
+                    name: "Khoai lang sấy",
+                    price: 25000,
+                },
+            ],
+        },
+    };
+
     return (
         <>
             {/* {Categories Begin } */}
@@ -59,7 +123,7 @@ const HomePage = () => {
                     {sliderItems.map((item, key) => (
                         <div className="categories_slider_item"
                             style={{ backgroundImage: `url(${item.bgImg})` }}
-                            key={key}    
+                            key={key}
                         >
                             <p>{item.name}</p>
                         </div>
@@ -68,6 +132,17 @@ const HomePage = () => {
                 </Carousel>
             </div>
             {/* {Categories End } */}
+            {/* {Featured Begin } */}
+            <div className="container">
+                <div className="featured">
+                    <div className="section-title">
+                        <h2>Sản phẩm nổi bật</h2>
+                    </div>
+                    {renderFeaturedProducts(featProducts)}
+                </div>
+            </div>
+            {/* {Featured End } */}
+
         </>
     );
 };
