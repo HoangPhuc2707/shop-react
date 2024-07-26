@@ -4,9 +4,11 @@ import { AiOutlineFacebook, AiOutlineGlobal, AiOutlineInstagram, AiOutlineLinked
 import { Link } from 'react-router-dom';
 import { formatter } from "ultils/fomater";
 import { ROUTERS } from "ultils/router";
+import { BiUser } from "react-icons/bi";
 
 const Header = () => {
     const [isShowCategories, setShowCategories] = useState(true);
+    const [isShowHumberger, setShowHumberger] = useState(false);
     const [menus] = useState([
         {
             name: "Trang chủ",
@@ -46,6 +48,67 @@ const Header = () => {
     ]);
     return (
         <>
+            <div className={`humberger__menu__overlay${
+                isShowHumberger ? " active" : ""
+            }`}
+                onClick={() => setShowHumberger(false)}
+            />
+            <div className={`humberger__menu__wrapper${
+                isShowHumberger ? " show" : ""
+            }`}
+            >
+                <div className="header__logo">
+                    <h1>SiVi Shop</h1>
+                </div>
+                <div className="humberger__menu__cart">
+                    <ul>
+                        <li>
+                            <Link to="">
+                                <AiOutlineShoppingCart />
+                                <span>1</span>
+                            </Link>
+                        </li>
+                    </ul>
+                    <div className="header__cart__price">
+                        Giỏ hàng: <span>{formatter(1001230)}</span>
+                    </div>
+                </div>
+                <div className="humberger__menu__widget">
+                    <div className="header__top__right__auth">
+                        <Link to={""}>
+                            <BiUser /> Đăng nhập
+                        </Link>
+                    </div>
+                </div>
+                <div className="humberger__menu__nav">
+                    <ul>
+                        <li>Menu Item</li>
+                    </ul>
+                </div>
+                <div className="header__top__right__social">
+                    <Link to={""}>
+                        <AiOutlineFacebook />
+                    </Link>
+                    <Link to={""}>
+                        <AiOutlineInstagram />
+                    </Link>
+                    <Link to={""}>
+                        <AiOutlineLinkedin />
+                    </Link>
+                    <Link to={""}>
+                        <AiOutlineGlobal />
+                    </Link>
+                </div>
+                <div className="header__top__right__contact">
+                    <ul>
+                        <li>
+                            <i className="fa fa-envelope" /> tranp8639@gmail.com
+                        </li>
+                        <li>Miễn phí ship đơn từ {formatter(200000)}</li>
+                    </ul>
+                </div>
+            </div>
+
             <div className="header__top">
                 <div className="container">
                     <div className="row">
@@ -93,12 +156,12 @@ const Header = () => {
             </div>
             <div className="container">
                 <div className="row">
-                    <div className="col-xl-3">
+                    <div className="col-lg-3">
                         <div className="header__logo">
                             <h1>SiVi Shop</h1>
                         </div>
                     </div>
-                    <div className="col-xl-6">
+                    <div className="col-lg-6">
                         <nav className="header__menu">
                             <ul>
                                 {menus?.map((menu, menuKey) => (
@@ -120,18 +183,23 @@ const Header = () => {
                             </ul>
                         </nav>
                     </div>
-                    <div className="col-xl-3">
+                    <div className="col-lg-3">
                         <div className="header__cart">
                             <div className="header__cart__price">
                                 <span>{formatter(1001230)}</span>
                             </div>
                             <ul>
                                 <li>
-                                    <Link to="">
+                                    <Link to="#">
                                         <AiOutlineShoppingCart /> <span>5</span>
                                     </Link>
                                 </li>
                             </ul>
+                        </div>
+                        <div className="humberger__open">
+                            <AiOutlineMenu
+                                onClick={() => setShowHumberger(true)}
+                            />
                         </div>
                     </div>
                 </div>
