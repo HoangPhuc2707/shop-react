@@ -1,6 +1,6 @@
 import { memo, useState } from "react";
 import "./style.scss";
-import { AiOutlineFacebook, AiOutlineGlobal, AiOutlineInstagram, AiOutlineLinkedin, AiOutlineMail, AiOutlineShoppingCart, AiOutlineUser, AiOutlineMenu, AiOutlinePhone } from "react-icons/ai";
+import { AiOutlineFacebook, AiOutlineGlobal, AiOutlineInstagram, AiOutlineLinkedin, AiOutlineMail, AiOutlineShoppingCart, AiOutlineUser, AiOutlineMenu, AiOutlinePhone, AiOutlineDownCircle, AiOutlineUpCircle } from "react-icons/ai";
 import { Link } from 'react-router-dom';
 import { formatter } from "ultils/fomater";
 import { ROUTERS } from "ultils/router";
@@ -8,8 +8,8 @@ import { BiUser } from "react-icons/bi";
 
 const Header = () => {
     const [isShowCategories, setShowCategories] = useState(true);
-    const [isShowHumberger, setShowHumberger] = useState(false);
-    const [menus] = useState([
+    const [isShowHumberger, setShowHumberger] = useState(true);
+    const [menus, setMenus] = useState([
         {
             name: "Trang chủ",
             path: ROUTERS.USER.HOME,
@@ -48,14 +48,12 @@ const Header = () => {
     ]);
     return (
         <>
-            <div className={`humberger__menu__overlay${
-                isShowHumberger ? " active" : ""
-            }`}
+            <div className={`humberger__menu__overlay${isShowHumberger ? " active" : ""
+                }`}
                 onClick={() => setShowHumberger(false)}
             />
-            <div className={`humberger__menu__wrapper${
-                isShowHumberger ? " show" : ""
-            }`}
+            <div className={`humberger__menu__wrapper${isShowHumberger ? " show" : ""
+                }`}
             >
                 <div className="header__logo">
                     <h1>SiVi Shop</h1>
@@ -82,7 +80,39 @@ const Header = () => {
                 </div>
                 <div className="humberger__menu__nav">
                     <ul>
-                        <li>Menu Item</li>
+                        {menus.map((menu, menuKey) => (
+                            <li key={menuKey} to={menu.path}>
+                                <Link
+                                    to={menu.path}
+                                    onClick={() => {
+                                        const newMenus = [...menus];
+                                        newMenus[menuKey].isShowSubmenu =
+                                            !newMenus[menuKey].isShowSubmenu;
+                                        setMenus(newMenus);
+                                    }}
+                                >
+                                    {menu.name}
+                                    {menu.child &&
+                                        (menu.isShowSubmenu ? (
+                                            <AiOutlineDownCircle />
+                                        ) : (
+                                            <AiOutlineUpCircle />
+                                        ))}
+                                </Link>
+                                {menu.child && (
+                                    <ul className={`header__menu__dropdown ${
+                                        menu.isShowSubmenu ? "show__submenu" : ""
+                                        }`}
+                                    >
+                                        {menu.child.map((childItem, childKey) => (
+                                            <li key={`${menuKey}-${childKey}`}>
+                                                <Link to={childItem.path}>{childItem.name}</Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </li>
+                        ))}
                     </ul>
                 </div>
                 <div className="header__top__right__social">
@@ -102,7 +132,7 @@ const Header = () => {
                 <div className="header__top__right__contact">
                     <ul>
                         <li>
-                            <i className="fa fa-envelope" /> tranp8639@gmail.com
+                            <AiOutlineMail /> tranp8639@gmail.com
                         </li>
                         <li>Miễn phí ship đơn từ {formatter(200000)}</li>
                     </ul>
