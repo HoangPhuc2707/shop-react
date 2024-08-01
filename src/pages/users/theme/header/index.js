@@ -8,7 +8,7 @@ import { BiUser } from "react-icons/bi";
 
 const Header = () => {
     const [isShowCategories, setShowCategories] = useState(true);
-    const [isShowHumberger, setShowHumberger] = useState(true);
+    const [isShowHumberger, setShowHumberger] = useState(false);
     const [menus, setMenus] = useState([
         {
             name: "Trang chủ",
@@ -236,7 +236,7 @@ const Header = () => {
             </div>
             <div className="container">
                 <div className="row hero__categories_container">
-                    <div className="col-lg-3 hero__categories">
+                    <div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 hero__categories">
                         <div className="hero__categories_all" onClick={() => setShowCategories(!isShowCategories)}>
                             <AiOutlineMenu />
                             Danh sách sản phẩm
@@ -261,7 +261,7 @@ const Header = () => {
                             </ul>
                         )}
                     </div>
-                    <div className="col-lg-9 hero__search_container">
+                    <div className="col-lg-9 col-md-12 col-sm-12 col-xs-12 hero__search_container">
                         <div className="hero__search">
                             <div className="hero__search__form">
                                 <form>
@@ -275,7 +275,7 @@ const Header = () => {
                                 </div>
                                 <div className="hero__search__phone__text">
                                     <p>0917861848</p>
-                                    <span>Hỗ trọ 24/7</span>
+                                    <span>Hỗ trợ 24/7</span>
                                 </div>
                             </div>
                         </div>
