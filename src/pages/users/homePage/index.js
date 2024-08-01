@@ -74,8 +74,9 @@ const HomePage = () => {
 
             const tabPanel = [];
             data[key].products.forEach((item, j) => {
-                tabPanel.push(<div className="col-lg-3" key={j}>
-                    <div className="featured__item">
+                tabPanel.push(
+                <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12" key={j}>
+                    <div className="featured__item pl-pr-10">
                         <div className="featured__item__pic"
                             style={{
                                 backgroundImage: `url(${item.img})`,
