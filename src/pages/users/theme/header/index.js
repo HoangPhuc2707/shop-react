@@ -6,6 +6,14 @@ import { formatter } from "ultils/fomater";
 import { ROUTERS } from "ultils/router";
 import { BiUser } from "react-icons/bi";
 
+export const categories = [
+    "Thịt tươi",
+    "Hải sản",
+    "Nước trái cây",
+    "Trái cây",
+    "Rau củ",
+];
+
 const Header = () => {
     const location = useLocation();
     const [isShowHumberger, setShowHumberger] = useState(false);
@@ -49,13 +57,7 @@ const Header = () => {
         },
     ]);
 
-    const categories = [
-        "Thịt tươi",
-        "Hải sản",
-        "Nước trái cây",
-        "Trái cây",
-        "Rau củ",
-    ];
+ 
 
     useEffect(() => {
         const isHome = location.pathname.length <= 1;
