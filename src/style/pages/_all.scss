@@ -34,6 +34,11 @@ html,body{
     max-width: 25%;
 }
 
+.col-lg-4{
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+
 .col-lg-6{
     flex: 0 0 50%;
     max-width: 50%;
