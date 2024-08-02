@@ -1,14 +1,16 @@
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import "./style.scss";
 import { AiOutlineFacebook, AiOutlineGlobal, AiOutlineInstagram, AiOutlineLinkedin, AiOutlineMail, AiOutlineShoppingCart, AiOutlineUser, AiOutlineMenu, AiOutlinePhone, AiOutlineDownCircle, AiOutlineUpCircle } from "react-icons/ai";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { formatter } from "ultils/fomater";
 import { ROUTERS } from "ultils/router";
 import { BiUser } from "react-icons/bi";
 
 const Header = () => {
-    const [isShowCategories, setShowCategories] = useState(true);
+    const location = useLocation();
     const [isShowHumberger, setShowHumberger] = useState(false);
+    const [isHome, setIsHome] = useState(location.pathname.lenght <= 1);
+    const [isShowCategories, setShowCategories] = useState(isHome);
     const [menus, setMenus] = useState([
         {
             name: "Trang chủ",
@@ -46,6 +48,21 @@ const Header = () => {
             path: "",
         },
     ]);
+
+    const categories = [
+        "Thịt tươi",
+        "Hải sản",
+        "Nước trái cây",
+        "Trái cây",
+        "Rau củ",
+    ];
+
+    useEffect(() => {
+        const isHome = location.pathname.length <= 1;
+        setIsHome(isHome);
+        setShowCategories(isHome);
+    }, [location]);
+
     return (
         <>
             <div className={`humberger__menu__overlay${isShowHumberger ? " active" : ""
@@ -100,8 +117,7 @@ const Header = () => {
                                         ))}
                                 </Link>
                                 {menu.child && (
-                                    <ul className={`header__menu__dropdown ${
-                                        menu.isShowSubmenu ? "show__submenu" : ""
+                                    <ul className={`header__menu__dropdown ${menu.isShowSubmenu ? "show__submenu" : ""
                                         }`}
                                     >
                                         {menu.child.map((childItem, childKey) => (
@@ -243,21 +259,15 @@ const Header = () => {
                         </div>
                         {isShowCategories && (
                             <ul className={isShowCategories ? "" : "hidden"}>
-                                <li>
-                                    <Link to={"#"}>Thịt tươi</Link>
-                                </li>
-                                <li>
-                                    <Link to={"#"}>Rau củ</Link>
-                                </li>
-                                <li>
-                                    <Link to={"#"}>Nước trái cây</Link>
-                                </li>
-                                <li>
-                                    <Link to={"#"}>Trái cây</Link>
-                                </li>
-                                <li>
-                                    <Link to={"#"}>Hải sản</Link>
-                                </li>
+                                {
+                                    categories.map((category, key) => (
+                                        <li key={key}>
+                                            <Link to={ROUTERS.USER.PRODUCTS}>{category}</Link>
+                                        </li>
+                                    ))
+                                }
+
+
                             </ul>
                         )}
                     </div>
@@ -279,17 +289,19 @@ const Header = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="hero__item">
-                            <div className="hero__text">
-                                <span>Trái cây tươi</span>
-                                <h2>
-                                    Rau quả <br />
-                                    sạch 100%
-                                </h2>
-                                <p>Miễn phí giao hàng tận nơi</p>
-                                <Link to="" className="primary-btn">Mua ngay</Link>
+                        {isHome && (
+                            <div className="hero__item">
+                                <div className="hero__text">
+                                    <span>Trái cây tươi</span>
+                                    <h2>
+                                        Rau quả <br />
+                                        sạch 100%
+                                    </h2>
+                                    <p>Miễn phí giao hàng tận nơi</p>
+                                    <Link to="" className="primary-btn">Mua ngay</Link>
+                                </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                 </div>
             </div>
