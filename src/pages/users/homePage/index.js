@@ -14,6 +14,8 @@ import feature5Img from "assets/users/images/featured/featured-5.jpg";
 import feature6Img from "assets/users/images/featured/featured-6.jpg";
 import feature7Img from "assets/users/images/featured/featured-7.jpg";
 import feature8Img from "assets/users/images/featured/featured-8.jpg";
+import feature9Img from "assets/users/images/featured/featured-9.jpg";
+import feature10Img from "assets/users/images/featured/featured-10.jpg";
 import banner1Img  from "assets/users/images/banner/banner-1.png";
 import banner2Img  from "assets/users/images/banner/banner-2.png";
 import "./style.scss";
@@ -110,14 +112,19 @@ const HomePage = () => {
                     price: 31000,
                 },
                 {
+                    img: feature7Img,
+                    name: "Dưa lưới",
+                    price: 40000,
+                },
+                {
                     img: feature2Img,
                     name: "Khoai lang sấy",
                     price: 25000,
                 },
                 {
-                    img: feature3Img,
-                    name: "Thịt bò",
-                    price: 199000,
+                    img: feature8Img,
+                    name: "Dưa hấu",
+                    price: 13000,
                 },
                 {
                     img: feature4Img,
@@ -135,14 +142,19 @@ const HomePage = () => {
                     price: 23000,
                 },
                 {
-                    img: feature7Img,
-                    name: "Dưa lưới",
-                    price: 40000,
+                    img: feature9Img,
+                    name: "Xoài sấy muối ớt",
+                    price: 41000,
                 },
                 {
-                    img: feature8Img,
-                    name: "Dưa hấu",
-                    price: 13000,
+                    img: feature10Img,
+                    name: "Chuối sấy dẻo",
+                    price: 24000,
+                },
+                {
+                    img: feature3Img,
+                    name: "Thịt bò",
+                    price: 199000,
                 },
             ],
         },
@@ -156,6 +168,16 @@ const HomePage = () => {
                 },
                 {
                     img: feature1Img,
+                    name: "Mít sấy",
+                    price: 31000,
+                },
+                {
+                    img: feature9Img,
+                    name: "Mít sấy",
+                    price: 31000,
+                },
+                {
+                    img: feature10Img,
                     name: "Mít sấy",
                     price: 31000,
                 },
@@ -193,6 +215,16 @@ const HomePage = () => {
                     img: feature6Img,
                     name: "Trứng gà",
                     price: 23000,
+                },
+            ],
+        },
+        meat: {
+            title: "Thịt",
+            products: [
+                {
+                    img: feature3Img,
+                    name: "Thịt bò",
+                    price: 199000,
                 },
             ],
         },
