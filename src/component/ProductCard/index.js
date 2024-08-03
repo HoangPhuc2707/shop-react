@@ -1,7 +1,8 @@
 import { memo } from "react";
 import "./style.scss";
+import { ROUTERS } from "ultils/router";
 const { AiOutlineEye, AiOutlineShoppingCart } = require("react-icons/ai");
-const { Link } = require("react-router-dom");
+const { Link, generatePath } = require("react-router-dom");
 const { formatter } = require("ultils/fomater");
 
 
@@ -26,7 +27,9 @@ const ProductCard = ({ img, name, price }) => {
                     </div>
                     <div className="featured__item__text">
                         <h6>
-                            <Link to="">{name}</Link>
+                            <Link to={generatePath(ROUTERS.USER.PRODUCT, { id: 1})}>
+                            {name}
+                            </Link>
                         </h6>
                         <h5>{formatter(price)}</h5>
                     </div>
